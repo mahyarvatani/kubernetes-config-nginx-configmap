@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+  - host: nginxdeployment.ir
+    http:
+      paths:
+      - backend:
+          service: 
+            name: svc1
+            port:
+              number: 8090
+        path: "/hello" 
+        pathType: Prefix
+  ingressClassName: nginx

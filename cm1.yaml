@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  index.html: |
+    HELLO!
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cm1

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+  labels:
+    app: pod1
+spec:
+  volumes:
+    - configMap:
+        name: cm1
+      name: vol1
+    - configMap:
+        name: cm2
+      name: vol2
+  containers:
+    - name: con1
+      image: nginx
+      ports:
+        - containerPort: 8090
+      readinessProbe:
+          httpGet:
+            path: /hello
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 5
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html/hello/"
+          name: vol1
+        - mountPath: "/etc/nginx/conf.d/"
+          name: vol2
